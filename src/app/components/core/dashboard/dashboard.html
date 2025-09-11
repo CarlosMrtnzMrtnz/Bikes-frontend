@@ -1,0 +1,96 @@
+<div class="dashboard">
+    <aside class="sidebar" id="station-details">
+        <div class="stations">
+            <h2>Stations</h2>
+        </div>
+        @for (station of stations; track station._id) {
+        <div (click)="renderBikes(station._id)" class="station-card" [class.active]="selected === station._id">
+            <h4>{{ station.nombre }}</h4>
+            <p>Disponibles: {{ station.bicicletasDisponibles }} / {{ station.capacidad }}</p>
+        </div>
+        } @empty {
+            <p>No hay estaciones disponibles.</p>
+        }
+    </aside>
+
+
+    <div class="main-content">
+        <div id="map" class="map">
+
+
+            @for (item of bikes; track $index) {
+                @if (item.estado == "disponible") {
+                    <div class="bike-card">
+                        <div class="bike-header">
+                            <img src="https://images.pexels.com/photos/18279017/pexels-photo-18279017.jpeg?_gl=1*1e0dp4d*_ga*MTAyODYzNzQwMi4xNzU2NDIzMzQ0*_ga_8JE65Q40S6*czE3NTcyOTY5OTgkbzMkZzEkdDE3NTcyOTcwNTIkajYkbDAkaDA." alt="Bicicleta modelo X" class="bike-image">
+                            <div class="bike-info">
+                                <p class="bike-subtitle">
+                                    {{item.estacion.nombre}}
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bike-card">
+                            <div class="bike-header">
+                                <div class="bike-info">
+                                    <p class="bike-subtitle">Ubicación: {{item.estacion.nombre}}</p>
+                                </div>
+                            </div>
+                        <div class="bike-details">
+                            <p><strong>ID:</strong>{{item.serial}}</p>
+                            <p><strong>Estado:</strong>{{item.estado}}</p>
+                            <p><strong>Tipo:</strong> Urbana</p>
+                        </div>
+                        <div class="bike-actions">
+                            <button (click)="alquilar(item.estacion._id, item._id)" class="btn-primary">Alquilar</button>
+                            <button class="btn-secondary">Ver detalles</button>
+                        </div>
+                        </div>
+                    </div>
+                }
+
+            }
+
+
+        </div>
+
+
+
+        <section class="rented-bikes">
+            <h3>Bicicletas alquiladas</h3>
+            <div class="rented">
+                @for (item of rents; track $index) {
+                    @if (item.activo == true) {
+                        <div class="rented-card">
+                            <h4>Alquiler</h4>
+                            <p><strong>Usuario: </strong>{{item.usuario.userName}}</p>
+                            <p><strong>Estación de salida: </strong> {{item.estacionSalida.nombre}}</p>
+                            <p><strong>Fecha inicio: </strong> {{item.fechaInicio}}</p>
+
+                            <div class="rented">
+                                <span (click)="devolover(item._id)" class="status finished">Devolver</span>
+
+                                <select [formControl]="estacionId" id="accionDevolver-{{item.id}}" name="accionDevolver" class="status-dropdown">
+                                        <option value="">Estación</option>
+                                    @for (item of stations; track $index) {
+                                        <option value="{{item._id}}">{{item.nombre}}</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+               <!--- <div class="rented-card">
+                    <h4>Trek - FX 1</h4>
+                    <p><strong>Usuario:</strong> Ana</p>
+                    <p><strong>Estación de salida:</strong> Estación Central</p>
+                    <p><strong>Fecha inicio:</strong> 06/09/2025 02:30 PM</p>
+                    <span class="status finished">Finalizado</span>
+                </div>-->
+            </div>
+        </section>
+
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<nav class="navbar">
+    <div class="nav-brand">BikeRent</div>
+    <ul class="nav-links">
+        <li><a routerLink="/dashboard" >Inicio</a></li>
+        <li><a routerLink="/estaciones" >Estaciones</a></li>
+        <li><a routerLink="/bicicletas" >Bicicletas</a></li>
+        @if (!loged) {
+            <li><a (click)="toggle()">Login</a></li>
+            <li><a (click)="open()" >Register</a></li>
+        }
+        @if (loged) {
+            <li><a (click)="logout()" >Logout</a></li>
+        }
+    </ul>
+    <button class="nav-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+
+  <!-------------------Modal Register-------------------->
+
+<div id="modalForm" [class.open-modal]="isActive" class="modal">
+    <div class="modal-content">
+        <span (click)="open()" class="close">&times;</span>
+        <h2 class="modal-title">Registrar Usuario</h2>
+
+        <form [formGroup]="formRegister" class="bike-form">
+            <div class="form-group">
+                <label for="serial">Nombre</label>
+                <input formControlName="userName" type="text" id="serial" placeholder="Ingrese su nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="marca">Email</label>
+                <input formControlName="email" type="email" id="marca" placeholder="Ej. example@mail.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="estacion">Password</label>
+                <input formControlName="password" type="password" id="estacion" placeholder="*****" required>
+            </div>
+
+            <button (click)="register()"  type="button" class="btn-submit">Registrarse</button>
+        </form>
+    </div>
+</div>
+
+
+  <!-------------------Modal Login------------------------>
+<div id="modalLogin" [class.open-modal]="isLogin" class="modal">
+  <div class="modal-content">
+    <span (click)="toggle()" class="close">&times;</span>
+    <h2 class="modal-title">Iniciar Sesión</h2>
+
+    <form [formGroup]="formLogin" class="bike-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          placeholder="Ej. example@mail.com"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          placeholder="*****"
+          required>
+      </div>
+
+      <button (click)="login()" type="button" class="btn-submit">Iniciar Sesión</button>
+    </form>
+  </div>
+</div>
+
