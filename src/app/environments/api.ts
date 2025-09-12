@@ -1,5 +1,5 @@
 export enum Api {
-    apiUrl = "https://d2mlibh3hdorg6.cloudfront.net/api/"
+    apiUrl = "https://d2mlibh3hdorg6.cloudfront.net/bikes/api"
 }
 // https://d2mlibh3hdorg6.cloudfront.net/api/
 
