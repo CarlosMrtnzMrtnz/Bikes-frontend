@@ -1,3 +1,6 @@
 export enum Api {
-    apiUrl = "http://54.159.164.233/bikes/api/"
+    apiUrl = "https://d2mlibh3hdorg6.cloudfront.net/api/"
 }
+// https://d2mlibh3hdorg6.cloudfront.net/api/
+
+// http://54.159.164.233/bikes/api/
