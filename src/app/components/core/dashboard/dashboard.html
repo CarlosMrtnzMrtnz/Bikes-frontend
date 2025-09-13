@@ -57,7 +57,9 @@
 
 
         <section class="rented-bikes">
-            <h3>Bicicletas alquiladas</h3>
+            <div class="d-f">
+                <h3>Bicicletas alquiladas</h3>
+            </div>
             <div class="rented">
                 @for (item of rents; track $index) {
                     @if (item.activo == true) {

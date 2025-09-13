@@ -213,3 +213,8 @@
   outline: none;
   box-shadow: 0 0 0 2px rgba(248, 215, 218, 0.6);
 }
+
+.d-f {
+    display: flex;
+    justify-content: center;
+}
